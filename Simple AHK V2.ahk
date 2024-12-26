@@ -1,4 +1,6 @@
 #Requires Autohotkey v2.0
+; V1toV2: Made functions global and added brackets
+
 ; Notes for coding:
 ; ^ for Ctrl
 ; ! for Alt
@@ -24,8 +26,8 @@ Alt & MButton::Volume_Mute
 
 ; Alt + S = Checks if a program is open, and sends a message if it's already open, or opens program if it's not, + open website in a new window
 !S::
-{ ; V1toV2: Added bracket
-global ; V1toV2: Made function global
+{
+global
 	if WinExist("ahk_exe <program.exe>")
 		MsgBox("<program> is already running.")
 	Else
@@ -34,23 +36,23 @@ global ; V1toV2: Made function global
 	Sleep(200)
 	Run("chrome.exe <fullURL> `" --new-window `"")
 return
+}
 
 ; Windows Key + L = Turn off monitor after locking system
-} ; V1toV2: Added Bracket before hotkey or Hotstring
 #L::
-{ ; V1toV2: Added bracket
-global ; V1toV2: Made function global
+{
+global
 	Sleep(200)
 	DllCall("LockWorkStation")
 	Sleep(200)
 	ErrorLevel := SendMessage(0x112, 0xF170, 2, , "Program Manager")
  return
+}
 
 ; Windows Key + Q = Send text, send tab, send text as string, send enter
-} ; V1toV2: Added Bracket before hotkey or Hotstring
 #Q::
-{ ; V1toV2: Added bracket
-global ; V1toV2: Made function global
+{
+global
 	Send("Sends text but not certain characters")
 	Send("`t")
 	Send("{Raw}Sends any keys as a raw string (i.e. you can use ^!#+ etc, without issues)")
